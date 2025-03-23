@@ -77,8 +77,8 @@ export default function Navbar() {
   }, [navItems]);
 
   return (
-    <header className="fixed top-4 z-50 max-w-screen-xl mx-auto">
-      <nav className="transform translate-x-4 lg:translate-x-1/2 bg-white lg:bg-white/70 px-6 py-3 rounded-full flex gap-6 items-center shadow-lg w-full justify-between">
+    <header className="fixed top-4 z-50 max-w-screen-xl mx-auto lg:max-w-full lg:left-1/2 transform lg:-translate-x-1/2">
+      <nav className="transform translate-x-4 lg:translate-x-0 bg-white lg:bg-white/70 px-4.5 lg:px-6 py-3 rounded-full flex shadow-lg justify-center">
         {/* Hamburger icon for mobile */}
         <button
           onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
