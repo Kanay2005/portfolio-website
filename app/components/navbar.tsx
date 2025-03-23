@@ -1,6 +1,6 @@
 "use client"; // Required in Next.js 13+ App Router
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useMemo } from "react";
 
 // Function to smoothly scroll to a section
 export const scrollToSection = (id: string) => {
@@ -41,14 +41,17 @@ const easeInOut = (t: number, b: number, c: number, d: number) => {
 export default function Navbar() {
   const [activeSection, setActiveSection] = useState("home");
 
-  const navItems = [
-    { name: "Home", id: "home" },
-    { name: "Projects", id: "projects" },
-    { name: "Skills", id: "skills" },
-    { name: "Education", id: "education" },
-    { name: "Experience", id: "experience" },
-    { name: "Contact", id: "contact" },
-  ];
+  const navItems = useMemo(
+    () => [
+      { name: "Home", id: "home" },
+      { name: "Projects", id: "projects" },
+      { name: "Skills", id: "skills" },
+      { name: "Education", id: "education" },
+      { name: "Experience", id: "experience" },
+      { name: "Contact", id: "contact" },
+    ],
+    []
+  );
 
   // Track which section is currently in view
   useEffect(() => {
@@ -70,7 +73,7 @@ export default function Navbar() {
 
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
+  }, [navItems]);
 
   return (
     <header className="fixed top-4 left-1/2 transform -translate-x-1/2 z-50">

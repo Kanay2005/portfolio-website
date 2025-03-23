@@ -42,14 +42,15 @@ export default function Portfolio() {
             <div className="flex flex-col md:flex-row items-center gap-8">
               <div className="md:w-1/2 space-y-6">
                 <h1 className="text-4xl md:text-6xl font-bold">
-                  Hi, I'm <span className="text-blue-600">Kanay Gupta</span>
+                  Hi, I&apos;m{" "}
+                  <span className="text-blue-600">Kanay Gupta</span>
                 </h1>
                 <h2 className="text-2xl md:text-3xl text-gray-600">
                   Computer Science Student
                 </h2>
                 <p className="text-lg">
                   I am currently a university student studying at UNSW expected
-                  to graduate in late 2025. I'm passionate about machine
+                  to graduate in late 2025. I&apos;m passionate about machine
                   learning, web development, and creating innovative solutions
                   to real-world problems.
                 </p>
@@ -424,8 +425,8 @@ export default function Portfolio() {
                 <div className="mb-6">
                   <h3 className="text-xl font-bold">Get In Touch</h3>
                   <p className="text-gray-600">
-                    Fill out the form below and I'll get back to you as soon as
-                    possible.
+                    Fill out the form below and I&apos;ll get back to you as
+                    soon as possible.
                   </p>
                 </div>
                 <form className="space-y-4">
