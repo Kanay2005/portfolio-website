@@ -40,6 +40,7 @@ const easeInOut = (t: number, b: number, c: number, d: number) => {
 
 export default function Navbar() {
   const [activeSection, setActiveSection] = useState("home");
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
   const navItems = useMemo(
     () => [
@@ -76,22 +77,61 @@ export default function Navbar() {
   }, [navItems]);
 
   return (
-    <header className="fixed top-4 left-1/2 transform -translate-x-1/2 z-50">
-      <nav className="bg-white/70 px-6 py-3 rounded-full flex gap-6 items-center shadow-lg">
-        {navItems.map((item) => (
-          <button
-            key={item.id}
-            onClick={() => scrollToSection(item.id)}
-            className={`px-4 py-2 rounded-full transition-all duration-100 ${
-              activeSection === item.id
-                ? "bg-gray-100/80 shadow-md" // Active button
-                : "text-gray-700 hover:bg-gray-100/40 hover:shadow-md hover:text-black"
-            }`}
-          >
-            {item.name}
-          </button>
-        ))}
+    <header className="fixed top-4 z-50 max-w-screen-xl mx-auto">
+      <nav className="transform translate-x-4 lg:translate-x-1/2 bg-white lg:bg-white/70 px-6 py-3 rounded-full flex gap-6 items-center shadow-lg w-full justify-between">
+        {/* Hamburger icon for mobile */}
+        <button
+          onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+          className="lg:hidden text-xl"
+        >
+          &#9776; {/* Hamburger icon */}
+        </button>
+
+        {/* Navigation links for desktop */}
+        <div className="hidden lg:flex gap-6">
+          {navItems.map((item) => (
+            <button
+              key={item.id}
+              onClick={() => scrollToSection(item.id)}
+              className={`px-4 py-2 rounded-full transition-all duration-100 ${
+                activeSection === item.id
+                  ? "bg-gray-100/80 shadow-md" // Active button
+                  : "text-gray-700 hover:bg-gray-100/40 hover:shadow-md hover:text-black"
+              }`}
+            >
+              {item.name}
+            </button>
+          ))}
+        </div>
       </nav>
+
+      {/* Mobile menu */}
+      <div
+        className={`lg:hidden fixed top-20 left-0 w-64 bg-white/100 px-6 py-3 rounded-lg shadow-lg transition-transform duration-300 z-40 ${
+          isMobileMenuOpen
+            ? "transform translate-x-4"
+            : "transform -translate-x-full"
+        }`}
+      >
+        <div className="flex flex-col gap-4 w-full">
+          {navItems.map((item) => (
+            <button
+              key={item.id}
+              onClick={() => {
+                scrollToSection(item.id);
+                setIsMobileMenuOpen(false); // Close the mobile menu after selecting an item
+              }}
+              className={`w-full px-4 py-2 rounded-lg transition-all text-left ${
+                activeSection === item.id
+                  ? "bg-gray-100/80 shadow-md" // Active button
+                  : "text-gray-700"
+              }`}
+            >
+              {item.name}
+            </button>
+          ))}
+        </div>
+      </div>
     </header>
   );
 }
