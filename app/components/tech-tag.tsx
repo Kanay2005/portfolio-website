@@ -1,4 +1,4 @@
-import Image from "next/image";
+import Image from "./custom-image";
 
 interface TechTagProps {
   name: string;
