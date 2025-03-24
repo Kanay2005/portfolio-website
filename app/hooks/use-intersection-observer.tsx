@@ -1,11 +1,11 @@
-"use client"
+"use client";
 
-import { useEffect, useState, useRef } from "react"
+import { useEffect, useState, useRef } from "react";
 
 interface UseIntersectionObserverProps {
-  threshold?: number
-  rootMargin?: string
-  freezeOnceVisible?: boolean
+  threshold?: number;
+  rootMargin?: string;
+  freezeOnceVisible?: boolean;
 }
 
 export function useIntersectionObserver({
@@ -13,33 +13,31 @@ export function useIntersectionObserver({
   rootMargin = "0px",
   freezeOnceVisible = true,
 }: UseIntersectionObserverProps = {}) {
-  const [isIntersecting, setIsIntersecting] = useState(false)
-  const ref = useRef<HTMLElement | null>(null)
+  const [isIntersecting, setIsIntersecting] = useState(false);
+  const ref = useRef<HTMLElement | null>(null);
 
   useEffect(() => {
-    const node = ref.current
-    if (!node) return
+    const node = ref.current;
+    if (!node) return;
 
     const observer = new IntersectionObserver(
       ([entry]) => {
         // Update state when observer callback fires
-        setIsIntersecting(entry.isIntersecting)
+        setIsIntersecting(entry.isIntersecting);
 
         if (entry.isIntersecting && freezeOnceVisible) {
-          observer.unobserve(node)
+          observer.unobserve(node);
         }
       },
-      { threshold, rootMargin },
-    )
+      { threshold, rootMargin }
+    );
 
-    observer.observe(node)
+    observer.observe(node);
 
     return () => {
-      observer.disconnect()
-    }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [threshold, rootMargin, freezeOnceVisible])
+      observer.disconnect();
+    };
+  }, [threshold, rootMargin, freezeOnceVisible]);
 
-  return { ref, isIntersecting }
+  return { ref, isIntersecting };
 }
-
