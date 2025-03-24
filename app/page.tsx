@@ -107,7 +107,7 @@ export default function Portfolio() {
                     title: "Aim and Wall Hacks for CS:GO",
                     description:
                       "Engineered advanced game hacks using Python-based memory manipulation, leveraging reverse engineering techniques to modify game behavior in real time. Developed and integrated multiple advanced features, requiring an in-depth understanding of the game’s internal mechanics, memory structures, and event handling.",
-                    image: "/csgo.png?height=400&width=600",
+                    image: "/portfolio-website/csgo.png?height=400&width=600",
                     tags: ["Python"],
                     link: "https://youtu.be/o7_jr6U4AoY?si=s-XPBWvEBEePyYSG",
                   },
