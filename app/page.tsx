@@ -58,7 +58,11 @@ export default function Portfolio() {
                       View Projects
                     </button>
                     <a
-                      href="/Resume.pdf"
+                      href={
+                        process.env.NODE_ENV === "production"
+                          ? `/portfolio-website/Resume.pdf` // Add the prefix for production
+                          : "/Resume.pdf"
+                      }
                       download="Resume.pdf"
                       className="px-6 py-3 bg-white text-gray-900 rounded-md border border-gray-300 hover:bg-gray-50 transition-colors shadow-md hover:shadow-md"
                     >
