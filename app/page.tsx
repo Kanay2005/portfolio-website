@@ -78,7 +78,7 @@ export default function Portfolio() {
               >
                 <div className="relative w-64 h-64 md:w-80 md:h-80 rounded-full overflow-hidden border-4 border-indigo-600 shadow-2xl">
                   <Image
-                    src="/placeholder.svg?height=320&width=320"
+                    src="/profilePicture.JPG?height=320&width=320"
                     alt="Kanay Gupta"
                     fill
                     className="object-cover"
