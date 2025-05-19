@@ -108,6 +108,22 @@ export default function Portfolio() {
               <div className="grid grid-cols-1 gap-16">
                 {[
                   {
+                    title: "Ray Tracing Engine from Scratch in Rust",
+                    description:
+                      "Designed and implemented a multithreaded ray tracing engine entirely from scratch without relying on external crates. Developed custom modules for vector and matrix math, ray-object intersection logic, camera projection, and lighting models. Leveraged Rust's native concurrency primitives to parallelize rendering across threads, significantly improving performance on multi-core systems.",
+                    image: "/raytracing.png?height=400&width=600",
+                    tags: ["Rust"],
+                    link: "N/A",
+                  },
+                  {
+                    title: "Health Tracking Web App (Hackathon Project)",
+                    description:
+                      "Collaborated in a team to develop a responsive health tracking website using React. Key features include an intelligent food-to-calorie estimator powered by a large language model (LLM) that parses natural language food descriptions, a personalized target calorie tracker, and a user-friendly blog page for health and nutrition content.",
+                    image: "/fitrack.png?height=400&width=600",
+                    tags: ["React", "Next.js", "Tailwind"],
+                    link: "N/A",
+                  },
+                  {
                     title: "Aim and Wall Hacks for CS:GO",
                     description:
                       "Engineered advanced game hacks using Python-based memory manipulation, leveraging reverse engineering techniques to modify game behavior in real time. Developed and integrated multiple advanced features, requiring an in-depth understanding of the game’s internal mechanics, memory structures, and event handling.",
@@ -116,20 +132,20 @@ export default function Portfolio() {
                     link: "https://youtu.be/o7_jr6U4AoY?si=s-XPBWvEBEePyYSG",
                   },
                   {
-                    title: "Portfolio Website",
-                    description:
-                      "Developed a responsive portfolio website using React.js, Next.js, and Tailwind CSS, implementing dynamic routing, optimized image handling, and server-side rendering for improved performance and SEO. Designed and deployed a modern, mobile-friendly UI with Tailwind CSS, ensuring fast load times and accessibility, while leveraging Next.js static generation for enhanced scalability and efficiency.",
-                    image: "/portfolio.png?height=400&width=600",
-                    tags: ["React", "Next.js", "Tailwind"],
-                    link: "#home",
-                  },
-                  {
                     title: "Real Time Tetris Bot",
                     description:
                       "Developed an AI-powered Tetris bot that detects game blocks in real-time using OpenCV image processing and executes optimal moves via PyAutoGUI keyboard inputs, achieving gameplay speeds faster than any human. Implemented advanced computer vision techniques such as edge detection and template matching in OpenCV to recognize falling Tetriminos instantly, enabling near-instant decision-making and outperforming human reaction times.",
                     image: "/tetrio.jpg?height=400&width=600",
                     tags: ["Python", "OpenCV"],
                     link: "N/A",
+                  },
+                  {
+                    title: "Portfolio Website",
+                    description:
+                      "Developed a responsive portfolio website using React.js, Next.js, and Tailwind CSS, implementing dynamic routing, optimized image handling, and server-side rendering for improved performance and SEO. Designed and deployed a modern, mobile-friendly UI with Tailwind CSS, ensuring fast load times and accessibility, while leveraging Next.js static generation for enhanced scalability and efficiency.",
+                    image: "/portfolio.png?height=400&width=600",
+                    tags: ["React", "Next.js", "Tailwind"],
+                    link: "#home",
                   },
                   {
                     title: "Backend JavaScript Server",
