@@ -110,7 +110,7 @@ export default function Portfolio() {
                   {
                     title: "Ray Tracing Engine from Scratch in Rust",
                     description:
-                      "Designed and implemented a multithreaded ray tracing engine entirely from scratch without relying on external crates. Developed custom modules for vector and matrix math, ray-object intersection logic, camera projection, and lighting models. Leveraged Rust's native concurrency primitives to parallelize rendering across threads, significantly improving performance on multi-core systems.",
+                      "Designed and implemented a multithreaded ray tracing engine entirely from scratch without relying on external crates. Developed custom modules for vector math, ray-object intersection logic, camera projection, and lighting models. Leveraged Rust's native concurrency primitives to parallelize rendering across threads, significantly improving performance on multi-core systems.",
                     image: "/raytracing.png?height=400&width=600",
                     tags: ["Rust"],
                     link: "N/A",
