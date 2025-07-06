@@ -44,9 +44,12 @@ export default function Portfolio() {
                 <AnimatedSection delay={600}>
                   <p className="text-lg">
                     I am currently a university student studying at UNSW
-                    expected to graduate in late 2025. I&apos;m passionate about
-                    machine learning, web development, and creating innovative
-                    solutions to real-world problems.
+                    expected to graduate in late 2025. My project experience
+                    ranges from developing AI-powered tools and fine-tuning
+                    language models with PyTorch to architecting
+                    performance-critical systems from the ground up in Rust.
+                    Driven by a desire to tackle complex challenges, I am eager
+                    to apply my broad skill set to create impactful solutions.
                   </p>
                 </AnimatedSection>
                 <AnimatedSection delay={800}>
@@ -108,23 +111,32 @@ export default function Portfolio() {
               <div className="grid grid-cols-1 gap-16">
                 {[
                   {
+                    title:
+                      "AI-Powered Job Ad Information Extraction (SEEK Industry Group Project)",
+                    description:
+                      "Led a comparative analysis of three distinct models for a SEEK-sponsored project: a traditional Scikit-learn baseline, a fine-tuned open-weight LLM (Pythia), and the proprietary Gemini API. Engineered and fine-tuned a Pythia-160m model with custom prediction heads, reducing MAE by over 95% compared to the logistic regression baseline. Benchmarked the Gemini API, establishing its state-of-the-art performance (MAE <$1k) for numerical extraction, and built the foundational dataset by annotating 50+ samples to achieve a 94% inter-annotator agreement.",
+                    image: "/nlpProject.png?height=400&width=600",
+                    tags: ["Python"],
+                    link: "N/A",
+                  },
+                  {
                     title: "Ray Tracing Engine from Scratch in Rust",
                     description:
-                      "Designed and implemented a multithreaded ray tracing engine entirely from scratch without relying on external crates. Developed custom modules for vector math, ray-object intersection logic, camera projection, and lighting models. Leveraged Rust's native concurrency primitives to parallelize rendering across threads, significantly improving performance on multi-core systems.",
+                      "Architected a high-performance, multithreaded path tracing engine in Rust from the ground up without the use of external crates, implementing physically-based materials (metals, dielectrics), a configurable camera with depth-of-field, and texture mapping. Leveraged Rust’s concurrency primitives (Arc, Mutex) to parallelize rendering, achieving a 7.16x performance increase on a 16-core CPU compared to a single-threaded approach.",
                     image: "/raytracing.png?height=400&width=600",
                     tags: ["Rust"],
-                    link: "N/A",
+                    link: "https://github.com/Kanay2005/ray-tracing",
                   },
                   {
                     title: "Health Tracking Web App (Hackathon Project)",
                     description:
-                      "Collaborated in a team to develop a responsive health tracking website using React. Key features include an intelligent food-to-calorie estimator powered by a large language model (LLM) that parses natural language food descriptions, a personalized target calorie tracker, and a user-friendly blog page for health and nutrition content.",
+                      "Spearheaded the development of a core feature: an AI-powered natural language food-to-calorie estimator by integrating the Gemini API. Engineered the React front-end and managed state for a personalized calorie tracker and a user-facing blog, delivering a fully functional prototype within the 48-hour hackathon timeframe.",
                     image: "/fitrack.png?height=400&width=600",
                     tags: ["React", "Next.js", "Tailwind"],
                     link: "N/A",
                   },
                   {
-                    title: "Aim and Wall Hacks for CS:GO",
+                    title: "Game Engine Memory Analysis for CS:GO",
                     description:
                       "Engineered advanced game hacks using Python-based memory manipulation, leveraging reverse engineering techniques to modify game behavior in real time. Developed and integrated multiple advanced features, requiring an in-depth understanding of the game’s internal mechanics, memory structures, and event handling.",
                     image: "/csgo.png?height=400&width=600",
@@ -132,9 +144,9 @@ export default function Portfolio() {
                     link: "https://youtu.be/o7_jr6U4AoY?si=s-XPBWvEBEePyYSG",
                   },
                   {
-                    title: "Real Time Tetris Bot",
+                    title: "Autonomous Tetris Agent with Computer Vision",
                     description:
-                      "Developed an AI-powered Tetris bot that detects game blocks in real-time using OpenCV image processing and executes optimal moves via PyAutoGUI keyboard inputs, achieving gameplay speeds faster than any human. Implemented advanced computer vision techniques such as edge detection and template matching in OpenCV to recognize falling Tetriminos instantly, enabling near-instant decision-making and outperforming human reaction times.",
+                      "Engineered an autonomous Tetris agent by creating a computer vision pipeline in Python and OpenCV that performs real-time screen analysis to determine optimal block placement, consistently clearing 40 lines in 15 seconds, a performance ranking within the top 3 of global player leaderboards.",
                     image: "/tetrio.jpg?height=400&width=600",
                     tags: ["Python", "OpenCV"],
                     link: "N/A",
@@ -265,7 +277,7 @@ export default function Portfolio() {
                   degree: "Bachelor of Computer Science",
                   institution: "University of New South Wales (UNSW)",
                   period: "February 2023 - December 2025",
-                  gpa: "WAM: High Distinction",
+                  gpa: "WAM: 86 (High Distinction)",
                   courseTitle: "Relevant Coursework",
                   courses: [
                     "Machine Learning and Data Mining",
@@ -353,9 +365,8 @@ export default function Portfolio() {
                   company: "Cluey Learning",
                   period: "April 2023 - Ongoing",
                   achievements: [
-                    "Tutored students ranging from Year 9 to Year 12 in various concepts from Mathematics Standard to Mathematics Extension 1 resulting in a significant improvement in their academic performance.",
-                    "Adapted teaching techniques and approaches to accommodate diverse learning styles and abilities, resulting in increased student engagement and understanding.",
-                    "Provided feedback to supervisors on the effectiveness of the provided teaching materials, leading to continuous improvement and refinement of the curriculum.",
+                    "Mentored 15+ students from Year 9 to Year 12 in various concepts from Mathematics Standard to Mathematics Extension 1 leading to an average grade increase of over 20% for long-term students.",
+                    "Designed personalized learning plans and provided curriculum feedback to supervisors, resulting in improved student engagement and course materials.",
                   ],
                 },
               ].map((exp, index) => (
