@@ -44,7 +44,7 @@ export default function Portfolio() {
                 <AnimatedSection delay={600}>
                   <p className="text-lg">
                     I am currently a university student studying at UNSW
-                    expected to graduate in late 2025. My project experience
+                    expected to graduate in late 2026. My project experience
                     ranges from developing AI-powered tools and fine-tuning
                     language models with PyTorch to architecting
                     performance-critical systems from the ground up in Rust.
@@ -274,9 +274,9 @@ export default function Portfolio() {
             <div className="space-y-12 max-w-4xl mx-auto">
               {[
                 {
-                  degree: "Bachelor of Computer Science",
+                  degree: "Bachelor of Advanced Computer Science (Honours)",
                   institution: "University of New South Wales (UNSW)",
-                  period: "February 2023 - December 2025",
+                  period: "February 2023 - December 2026",
                   gpa: "WAM: 86 (High Distinction)",
                   courseTitle: "Relevant Coursework",
                   courses: [
@@ -315,11 +315,11 @@ export default function Portfolio() {
                           {edu.institution}
                         </p>
                       </div>
-                      <div className="md:text-right">
-                        <span className="px-4 py-2 bg-indigo-100 text-indigo-800 font-medium rounded-full">
+                      <div className="md:text-right mt-2">
+                        <span className="px-4 py-2 bg-indigo-100 text-indigo-800 font-medium rounded-full whitespace-nowrap">
                           {edu.period}
                         </span>
-                        <p className="mt-2 text-base font-medium">{edu.gpa}</p>
+                        <p className="mt-4 text-base font-medium">{edu.gpa}</p>
                       </div>
                     </div>
                     <div className="mt-6">
