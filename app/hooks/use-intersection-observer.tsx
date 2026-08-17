@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 
 interface UseIntersectionObserverProps {
   threshold?: number;
@@ -8,13 +8,13 @@ interface UseIntersectionObserverProps {
   freezeOnceVisible?: boolean;
 }
 
-export function useIntersectionObserver({
+export function useIntersectionObserver<T extends HTMLElement = HTMLElement>({
   threshold = 0.1,
   rootMargin = "0px",
   freezeOnceVisible = true,
 }: UseIntersectionObserverProps = {}) {
   const [isIntersecting, setIsIntersecting] = useState(false);
-  const ref = useRef<HTMLElement | null>(null);
+  const ref = useRef<T>(null);
 
   useEffect(() => {
     const node = ref.current;
@@ -22,7 +22,6 @@ export function useIntersectionObserver({
 
     const observer = new IntersectionObserver(
       ([entry]) => {
-        // Update state when observer callback fires
         setIsIntersecting(entry.isIntersecting);
 
         if (entry.isIntersecting && freezeOnceVisible) {
@@ -34,9 +33,7 @@ export function useIntersectionObserver({
 
     observer.observe(node);
 
-    return () => {
-      observer.disconnect();
-    };
+    return () => observer.disconnect();
   }, [threshold, rootMargin, freezeOnceVisible]);
 
   return { ref, isIntersecting };

@@ -1,21 +1,16 @@
-import Image from "./custom-image";
-import { techLogos } from "./tech-tag";
+import { techLogos, type TechName } from "@/app/data/tech";
 
-interface TechSkillProps {
-  name: string;
-}
+import AssetImage from "./asset-image";
 
-export default function TechSkill({ name }: TechSkillProps) {
-  // Default to a placeholder if the logo isn't found
-  const logoSrc = techLogos[name] || "/placeholder.svg?height=80&width=80";
-
+export default function TechSkill({ name }: { name: TechName }) {
   return (
     <div className="flex flex-col items-center justify-center p-4 bg-white rounded-lg shadow-md hover:shadow-lg transition-all hover:-translate-y-1 duration-300">
       <div className="relative w-16 h-16 mb-3">
-        <Image
-          src={logoSrc || "/placeholder.svg"}
-          alt={`${name} logo`}
+        <AssetImage
+          src={techLogos[name]}
+          alt=""
           fill
+          sizes="64px"
           className="object-contain"
         />
       </div>

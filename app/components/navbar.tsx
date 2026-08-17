@@ -1,101 +1,71 @@
-"use client"; // Required in Next.js 13+ App Router
+"use client";
 
-import { useState, useEffect, useMemo } from "react";
+import { Menu, X } from "lucide-react";
+import { useEffect, useState } from "react";
 
-// Function to smoothly scroll to a section
-export const scrollToSection = (id: string) => {
-  const section = document.getElementById(id);
-  if (section) {
-    const start = window.scrollY;
-    const end = section.offsetTop;
-    const distance = end - start;
-    const duration = 500; // Duration in milliseconds (lower value = faster scroll)
-
-    let startTime: number | null = null;
-
-    const scrollAnimation = (currentTime: number) => {
-      if (!startTime) startTime = currentTime;
-      const timeElapsed = currentTime - startTime;
-      const scrollAmount = easeInOut(timeElapsed, start, distance, duration);
-      window.scrollTo(0, scrollAmount);
-
-      if (timeElapsed < duration) {
-        requestAnimationFrame(scrollAnimation);
-      } else {
-        window.scrollTo(0, end); // Ensure it ends exactly at the target
-      }
-    };
-
-    requestAnimationFrame(scrollAnimation);
-  }
-};
-
-// Ease-in-out function for smooth acceleration and deceleration
-const easeInOut = (t: number, b: number, c: number, d: number) => {
-  let tNorm = t / (d / 2);
-  if (tNorm < 1) return (c / 2) * tNorm * tNorm * tNorm + b;
-  tNorm -= 2;
-  return (c / 2) * (tNorm * tNorm * tNorm + 2) + b;
-};
+import { navItems } from "@/app/data/site";
+import { scrollToSection } from "@/app/lib/scroll";
 
 export default function Navbar() {
-  const [activeSection, setActiveSection] = useState("home");
+  const [activeSection, setActiveSection] = useState<string>(navItems[0].id);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
-  const navItems = useMemo(
-    () => [
-      { name: "Home", id: "home" },
-      { name: "Projects", id: "projects" },
-      { name: "Skills", id: "skills" },
-      { name: "Education", id: "education" },
-      { name: "Experience", id: "experience" },
-      { name: "Contact", id: "contact" },
-    ],
-    []
-  );
-
-  // Track which section is currently in view
+  // One observer for all sections, instead of measuring every section's
+  // offsetTop on every scroll event. The rootMargin collapses the viewport to a
+  // thin band just above the middle: whichever section covers that band wins.
   useEffect(() => {
-    const handleScroll = () => {
-      let current = "home";
+    const sections = navItems
+      .map(({ id }) => document.getElementById(id))
+      .filter((el): el is HTMLElement => el !== null);
 
-      navItems.forEach((item) => {
-        const section = document.getElementById(item.id);
-        if (section) {
-          const sectionTop = section.offsetTop;
-          if (window.scrollY >= sectionTop - 100) {
-            current = item.id;
-          }
-        }
-      });
+    const observer = new IntersectionObserver(
+      (entries) => {
+        const visible = entries.find((entry) => entry.isIntersecting);
+        if (visible) setActiveSection(visible.target.id);
+      },
+      { rootMargin: "-45% 0px -55% 0px" }
+    );
 
-      setActiveSection(current);
-    };
+    sections.forEach((section) => observer.observe(section));
+    return () => observer.disconnect();
+  }, []);
 
-    window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, [navItems]);
+  const handleNavigate = (id: string) => {
+    scrollToSection(id);
+    setIsMobileMenuOpen(false);
+  };
 
   return (
     <header className="fixed top-4 z-50 max-w-screen-xl mx-auto lg:max-w-full lg:left-1/2 transform lg:-translate-x-1/2">
-      <nav className="transform translate-x-4 lg:translate-x-0 bg-white/50 backdrop-blur-md px-4.5 lg:px-6 py-3 rounded-full flex shadow-lg justify-center">
-        {/* Hamburger icon for mobile */}
+      <nav
+        aria-label="Main"
+        className="transform translate-x-4 lg:translate-x-0 bg-white/50 backdrop-blur-md px-4.5 lg:px-6 py-3 rounded-full flex shadow-lg justify-center"
+      >
         <button
-          onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-          className="lg:hidden text-xl"
+          type="button"
+          onClick={() => setIsMobileMenuOpen((open) => !open)}
+          className="lg:hidden"
+          aria-label={isMobileMenuOpen ? "Close menu" : "Open menu"}
+          aria-expanded={isMobileMenuOpen}
+          aria-controls="mobile-menu"
         >
-          &#9776; {/* Hamburger icon */}
+          {isMobileMenuOpen ? (
+            <X className="h-6 w-6" />
+          ) : (
+            <Menu className="h-6 w-6" />
+          )}
         </button>
 
-        {/* Navigation links for desktop */}
         <div className="hidden lg:flex gap-6">
           {navItems.map((item) => (
             <button
               key={item.id}
-              onClick={() => scrollToSection(item.id)}
+              type="button"
+              onClick={() => handleNavigate(item.id)}
+              aria-current={activeSection === item.id ? "true" : undefined}
               className={`px-4 py-2 rounded-full transition-all duration-100 ${
                 activeSection === item.id
-                  ? "bg-gray-100/80 shadow-md" // Active button
+                  ? "bg-gray-100/80 shadow-md"
                   : "text-gray-700 hover:bg-gray-100/40 hover:shadow-md hover:text-black"
               }`}
             >
@@ -105,25 +75,26 @@ export default function Navbar() {
         </div>
       </nav>
 
-      {/* Mobile menu */}
+      {/* `inert` keeps the slide-out animation while taking the off-screen menu
+          out of the tab order — previously it stayed focusable when closed. */}
       <div
+        id="mobile-menu"
+        inert={!isMobileMenuOpen}
+        aria-hidden={!isMobileMenuOpen}
         className={`lg:hidden fixed top-20 left-0 w-64 bg-white/50 backdrop-blur-md px-6 py-3 rounded-lg shadow-lg transition-transform duration-300 z-40 ${
-          isMobileMenuOpen
-            ? "transform translate-x-4"
-            : "transform -translate-x-full"
+          isMobileMenuOpen ? "translate-x-4" : "-translate-x-full"
         }`}
       >
         <div className="flex flex-col gap-4 w-full">
           {navItems.map((item) => (
             <button
               key={item.id}
-              onClick={() => {
-                scrollToSection(item.id);
-                setIsMobileMenuOpen(false); // Close the mobile menu after selecting an item
-              }}
+              type="button"
+              onClick={() => handleNavigate(item.id)}
+              aria-current={activeSection === item.id ? "true" : undefined}
               className={`w-full px-4 py-2 rounded-lg transition-all text-left ${
                 activeSection === item.id
-                  ? "bg-gray-100/80 shadow-md" // Active button
+                  ? "bg-gray-100/80 shadow-md"
                   : "text-gray-700"
               }`}
             >

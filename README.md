@@ -1,36 +1,55 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Portfolio Website
 
-## Getting Started
+Personal portfolio for Kanay Gupta — a single-page Next.js site deployed as a
+static export to GitHub Pages at
+[kanay2005.github.io/portfolio-website](https://kanay2005.github.io/portfolio-website).
 
-First, run the development server:
+## Getting started
+
+Requires Node 20.9+ (see `.nvmrc`).
 
 ```bash
+npm install
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Then open <http://localhost:3000>.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+| Script              | What it does                                  |
+| ------------------- | --------------------------------------------- |
+| `npm run dev`       | Dev server with hot reload                     |
+| `npm run build`     | Static export to `out/`                        |
+| `npm run lint`      | ESLint                                         |
+| `npm run typecheck` | `tsc --noEmit`                                 |
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## Editing content
 
-## Learn More
+Page content is data, not markup — everything lives in `app/data/`:
 
-To learn more about Next.js, take a look at the following resources:
+| File            | Contents                                              |
+| --------------- | ----------------------------------------------------- |
+| `site.ts`       | Name, bio, contact links, nav items                    |
+| `projects.ts`   | Project cards                                          |
+| `education.ts`  | Degrees and coursework                                 |
+| `experience.ts` | Roles and achievements                                 |
+| `tech.ts`       | Technology → logo map, and the skills grid order       |
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+Project `tags` and the skills list are typed against `tech.ts`, so a name with
+no matching logo fails the build rather than rendering a broken image.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+Adding a project image: drop a WebP into `public/`, sized to about 1200px on its
+long edge — GitHub Pages serves these as-is, with no image optimizer in front.
 
-## Deploy on Vercel
+## Deployment
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+Pushing to `main` triggers `.github/workflows/nextjs.yml`, which lints, type
+checks, builds, and publishes `out/` to GitHub Pages.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+Deployment settings live in `next.config.ts` (`output: "export"`, `basePath`,
+`images: { unoptimized: true }`). The workflow supplies only
+`NEXT_PUBLIC_BASE_PATH`, the `/portfolio-website` prefix the Pages URL needs, so
+a local build produces the same site rooted at `/`.
+
+Because that prefix is not applied to `public/` URLs automatically, reference
+those through `withBasePath()` (`app/lib/base-path.ts`) or the `AssetImage`
+component rather than hardcoding paths.
