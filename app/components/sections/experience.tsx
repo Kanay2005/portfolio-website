@@ -2,13 +2,14 @@ import { experience } from "@/app/data/experience";
 
 import AnimatedSection from "../animated-section";
 import Section from "../section";
+import TechTag from "../tech-tag";
 
 export default function Experience() {
   return (
-    <Section id="experience" title="Experience" tone="to-white">
+    <Section id="experience" title="Experience">
       <div className="space-y-12 max-w-4xl mx-auto">
-        {experience.map((role, index) => (
-          <AnimatedSection key={`${role.company}-${role.role}`} delay={index * 200}>
+        {experience.map((role) => (
+          <AnimatedSection key={`${role.company}-${role.role}`}>
             <article className="bg-white p-8 rounded-xl shadow-xl hover:shadow-2xl transition-all duration-300">
               <div className="flex flex-col md:flex-row justify-between items-start gap-4">
                 <div>
@@ -19,6 +20,13 @@ export default function Experience() {
                   {role.period}
                 </span>
               </div>
+              {role.tags && (
+                <div className="mt-4 flex flex-wrap gap-2">
+                  {role.tags.map((tag) => (
+                    <TechTag key={tag} name={tag} />
+                  ))}
+                </div>
+              )}
               <ul className="mt-6 space-y-2">
                 {role.achievements.map((achievement) => (
                   <li key={achievement} className="flex items-start">

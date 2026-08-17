@@ -3,6 +3,8 @@ export interface Education {
   institution: string;
   period: string;
   result: string;
+  /** Awards worth calling out above the coursework list. */
+  honours?: string[];
   listTitle: string;
   items: string[];
 }
@@ -12,7 +14,8 @@ export const education: Education[] = [
     degree: "Bachelor of Advanced Computer Science (Honours)",
     institution: "University of New South Wales (UNSW)",
     period: "February 2023 - December 2026",
-    result: "WAM: 86 (High Distinction)",
+    result: "WAM: 87 (High Distinction)",
+    honours: ["Faculty of Engineering Dean's Honours List (2023)"],
     listTitle: "Relevant Coursework",
     items: [
       "Machine Learning and Data Mining",

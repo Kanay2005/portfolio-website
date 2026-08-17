@@ -58,7 +58,7 @@ const iconClass = "h-6 w-6 text-indigo-600";
 
 export default function Contact() {
   return (
-    <Section id="contact" title="Contact Me" tone="to-gray">
+    <Section id="contact" title="Contact Me">
       <div className="max-w-3xl mx-auto">
         <AnimatedSection>
           <div className="bg-white p-8 rounded-xl shadow-xl">

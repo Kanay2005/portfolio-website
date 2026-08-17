@@ -11,19 +11,30 @@ export default function Navbar() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
   // One observer for all sections, instead of measuring every section's
-  // offsetTop on every scroll event. The rootMargin collapses the viewport to a
-  // thin band just above the middle: whichever section covers that band wins.
+  // offsetTop on every scroll event. The rootMargin narrows the viewport to a
+  // band just above the middle: whichever section covers that band wins.
   useEffect(() => {
     const sections = navItems
       .map(({ id }) => document.getElementById(id))
       .filter((el): el is HTMLElement => el !== null);
 
+    // Sections can straddle the band, and entry order is not document order,
+    // so track what is currently visible and resolve ties by page order.
+    const visible = new Set<string>();
+
     const observer = new IntersectionObserver(
       (entries) => {
-        const visible = entries.find((entry) => entry.isIntersecting);
-        if (visible) setActiveSection(visible.target.id);
+        for (const entry of entries) {
+          if (entry.isIntersecting) visible.add(entry.target.id);
+          else visible.delete(entry.target.id);
+        }
+
+        const current = navItems.find((item) => visible.has(item.id));
+        if (current) setActiveSection(current.id);
       },
-      { rootMargin: "-45% 0px -55% 0px" }
+      // A 5% band, not a zero-height line: a zero-area root can fail to report
+      // an intersection at all.
+      { rootMargin: "-45% 0px -50% 0px" }
     );
 
     sections.forEach((section) => observer.observe(section));

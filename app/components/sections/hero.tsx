@@ -5,13 +5,15 @@ import { withBasePath } from "@/app/lib/base-path";
 
 import AnimatedSection from "../animated-section";
 import AssetImage from "../asset-image";
-import ScrollButton from "../scroll-button";
 
 export default function Hero() {
   return (
     <section
       id="home"
-      className="h-screen flex items-center relative overflow-hidden"
+      // min-h (not h) so tall content grows the section instead of being
+      // clipped by the centering, and pt-32 keeps the heading clear of the
+      // fixed navbar on small screens.
+      className="min-h-dvh flex items-center relative overflow-hidden pt-32 pb-16 md:pt-20 md:pb-20"
     >
       <div className="absolute inset-0 bg-gradient-to-br from-blue-50 via-indigo-50 to-purple-50 z-0" />
 
@@ -37,16 +39,10 @@ export default function Hero() {
             </AnimatedSection>
             <AnimatedSection delay={800}>
               <div className="flex flex-wrap gap-4">
-                <ScrollButton
-                  targetId="projects"
-                  className="px-6 py-3 bg-indigo-600 text-white rounded-md hover:bg-indigo-700 transition-colors shadow-lg hover:shadow-indigo-200"
-                >
-                  View Projects
-                </ScrollButton>
                 <a
                   href={withBasePath(site.resume)}
                   download="Resume.pdf"
-                  className="inline-flex items-center gap-2 px-6 py-3 bg-white text-gray-900 rounded-md border border-gray-300 hover:bg-gray-50 transition-colors shadow-md"
+                  className="inline-flex items-center gap-2 px-6 py-3 bg-indigo-600 text-white rounded-md hover:bg-indigo-700 transition-colors shadow-lg hover:shadow-indigo-200"
                 >
                   <Download className="h-5 w-5" aria-hidden="true" />
                   Download Resume

@@ -2,8 +2,11 @@ import type { TechName } from "./tech";
 
 export interface Project {
   title: string;
+  /** Shown under the title — role, context, or timeframe. */
+  subtitle?: string;
   description: string;
-  image: string;
+  /** Omit when there is no screenshot; the card falls back to a title panel. */
+  image?: string;
   tags: TechName[];
   /** Omitted when the project has nothing public to link to. */
   link?: string;
@@ -11,35 +14,37 @@ export interface Project {
 
 export const projects: Project[] = [
   {
-    title:
-      "AI-Powered Job Ad Information Extraction (SEEK Industry Group Project)",
+    title: "LedgerMind – AI-Powered Tax Compliance App",
+    subtitle:
+      "Project Manager and Engineer, Capstone Project for IntelliServe · September – November 2025",
     description:
-      "Led a comparative analysis of three distinct models for a SEEK-sponsored project: a traditional Scikit-learn baseline, a fine-tuned open-weight LLM (Pythia), and the proprietary Gemini API. Engineered and fine-tuned a Pythia-160m model with custom prediction heads, reducing MAE by over 95% compared to the logistic regression baseline. Benchmarked the Gemini API, establishing its state-of-the-art performance (MAE <$1k) for numerical extraction, and built the foundational dataset by annotating 50+ samples to achieve a 94% inter-annotator agreement.",
+      "Led a 6-person agile team through weekly sprints and stakeholder meetings to deliver a functional MVP for an AI-driven tax deduction mobile app. Built an LLM extraction pipeline pulling vendor, date, and amount details from receipt images, voice logs, and email invoices, removing manual data entry. Designed a Retrieval-Augmented Generation (RAG) system validating expenses against live Australian Taxation Office (ATO) feeds, with compliance-ready PDF audit exports.",
+    tags: ["Python", "React", "PostgreSQL", "Docker", "Git", "Jira"],
+  },
+  {
+    title: "AI-Powered Job Ad Extractor – LLM Comparative Analysis",
+    subtitle: "AI Engineer, Industry Project for SEEK · March – April 2025",
+    description:
+      "Benchmarked three approaches to numerical extraction from job ads, then fine-tuned an open-weight Pythia-160m model with custom prediction heads, cutting Mean Absolute Error by over 95% against a Scikit-learn baseline. Annotated a foundational dataset of 50+ samples, achieving 94% inter-annotator agreement to establish a reliable evaluation benchmark.",
     image: "/nlpProject.webp",
-    tags: ["Python"],
+    tags: ["Python", "PyTorch", "Hugging Face", "scikit-learn", "pandas"],
   },
   {
     title: "Ray Tracing Engine from Scratch in Rust",
+    subtitle: "July 2025",
     description:
-      "Architected a high-performance, multithreaded path tracing engine in Rust from the ground up without the use of external crates, implementing physically-based materials (metals, dielectrics), a configurable camera with depth-of-field, and texture mapping. Leveraged Rust's concurrency primitives (Arc, Mutex) to parallelize rendering, achieving a 7.16x performance increase on a 16-core CPU compared to a single-threaded approach.",
+      "Wrote a multithreaded path tracing engine from scratch without external rendering crates, implementing physically based materials (metals, dielectrics), texture mapping, and a configurable depth-of-field camera. Achieved a 7.16x rendering speedup on a 16-core CPU by parallelising the workload using Rust's native concurrency primitives (Arc, Mutex).",
     image: "/raytracing.webp",
     tags: ["Rust"],
     link: "https://github.com/Kanay2005/ray-tracing",
   },
   {
-    title: "Health Tracking Web App (Hackathon Project)",
+    title: "Health Tracking Web App",
+    subtitle: "Hackathon Project",
     description:
       "Spearheaded the development of a core feature: an AI-powered natural language food-to-calorie estimator by integrating the Gemini API. Engineered the React front-end and managed state for a personalized calorie tracker and a user-facing blog, delivering a fully functional prototype within the 48-hour hackathon timeframe.",
     image: "/fitrack.webp",
     tags: ["React", "Next.js", "Tailwind"],
-  },
-  {
-    title: "Game Engine Memory Analysis for CS:GO",
-    description:
-      "Engineered advanced game hacks using Python-based memory manipulation, leveraging reverse engineering techniques to modify game behavior in real time. Developed and integrated multiple advanced features, requiring an in-depth understanding of the game's internal mechanics, memory structures, and event handling.",
-    image: "/csgo.webp",
-    tags: ["Python"],
-    link: "https://youtu.be/o7_jr6U4AoY?si=s-XPBWvEBEePyYSG",
   },
   {
     title: "Autonomous Tetris Agent with Computer Vision",
@@ -51,16 +56,9 @@ export const projects: Project[] = [
   {
     title: "Portfolio Website",
     description:
-      "Developed a responsive portfolio website using React.js, Next.js, and Tailwind CSS, implementing dynamic routing, optimized image handling, and server-side rendering for improved performance and SEO. Designed and deployed a modern, mobile-friendly UI with Tailwind CSS, ensuring fast load times and accessibility, while leveraging Next.js static generation for enhanced scalability and efficiency.",
+      "This site. Built with Next.js and Tailwind CSS as a statically exported single page, deployed to GitHub Pages by a GitHub Actions pipeline that lints, type checks, and builds on every push. Content is data-driven and type-checked, scroll-triggered reveals run off a single IntersectionObserver, and the whole page loads in well under a megabyte.",
     image: "/portfolio.webp",
     tags: ["React", "Next.js", "Tailwind"],
     link: "https://github.com/Kanay2005/portfolio-website",
-  },
-  {
-    title: "Backend JavaScript Server",
-    description:
-      "Developed a backend JavaScript server replicating the features of Kahoot using TypeScript working effectively in a group environment using Git. Successfully created and implemented unit testing and full program testing using the Jest module.",
-    image: "/1531.webp",
-    tags: ["JavaScript", "TypeScript", "Git"],
   },
 ];

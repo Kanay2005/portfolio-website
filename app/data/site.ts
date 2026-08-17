@@ -1,12 +1,12 @@
 export const site = {
   name: "Kanay Gupta",
-  role: "Computer Science Student",
+  role: "Computer Science Student & Software Engineering Intern",
   // Used by Next to resolve Open Graph image URLs to absolute ones.
   url: "https://kanay2005.github.io/portfolio-website",
   description:
-    "Computer Science student at UNSW building AI tools, language-model pipelines, and performance-critical systems in Rust.",
+    "Honours Computer Science student at UNSW, software engineering intern at ResMed, and researcher working on satire explanation with language models.",
   intro:
-    "I am currently a university student studying at UNSW expected to graduate in late 2026. My project experience ranges from developing AI-powered tools and fine-tuning language models with PyTorch to architecting performance-critical systems from the ground up in Rust. Driven by a desire to tackle complex challenges, I am eager to apply my broad skill set to create impactful solutions.",
+    "I am an Honours Computer Science student at UNSW, graduating in late 2026. I am currently a software engineering intern at ResMed, working across a Java API, an Angular portal, and Python services on a cloud-hosted device simulation platform, and an undergraduate researcher writing my thesis on whether large language models can explain satire rather than merely classify it. My project experience ranges from fine-tuning language models with PyTorch to architecting performance-critical systems from the ground up in Rust.",
   email: "kanayg@icloud.com",
   location: "Sydney, Australia",
   linkedin: "https://linkedin.com/in/kanay-gupta",
@@ -15,11 +15,13 @@ export const site = {
   profileImage: "/profilePicture.webp",
 } as const;
 
+// Order matters: this drives the navbar, and it must match the section order in
+// page.tsx for scroll-spy to resolve overlapping sections correctly.
 export const navItems = [
   { name: "Home", id: "home" },
+  { name: "Experience", id: "experience" },
   { name: "Projects", id: "projects" },
   { name: "Skills", id: "skills" },
   { name: "Education", id: "education" },
-  { name: "Experience", id: "experience" },
   { name: "Contact", id: "contact" },
 ] as const;

@@ -21,8 +21,9 @@
 
 html {
   scroll-behavior: smooth;
-  /* Keeps section headings clear of the fixed navbar when jumping to an anchor. */
-  scroll-padding-top: 6rem;
+  /* Keeps a jumped-to section clear of the fixed navbar. Set here rather than
+     per-section so scroll-margin and scroll-padding don't stack up. */
+  scroll-padding-top: 5rem;
 }
 
 @media (prefers-reduced-motion: reduce) {

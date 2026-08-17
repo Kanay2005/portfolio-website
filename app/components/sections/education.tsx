@@ -5,10 +5,10 @@ import Section from "../section";
 
 export default function Education() {
   return (
-    <Section id="education" title="Education" tone="to-gray">
+    <Section id="education" title="Education">
       <div className="space-y-12 max-w-4xl mx-auto">
-        {education.map((entry, index) => (
-          <AnimatedSection key={entry.degree} delay={index * 200}>
+        {education.map((entry) => (
+          <AnimatedSection key={entry.degree}>
             <article className="bg-white p-8 rounded-xl shadow-xl hover:shadow-2xl transition-all duration-300">
               <div className="flex flex-col md:flex-row justify-between items-start gap-4">
                 <div>
@@ -22,6 +22,11 @@ export default function Education() {
                     {entry.period}
                   </span>
                   <p className="mt-4 text-base font-medium">{entry.result}</p>
+                  {entry.honours?.map((honour) => (
+                    <p key={honour} className="mt-1 text-sm text-gray-600">
+                      {honour}
+                    </p>
+                  ))}
                 </div>
               </div>
               <div className="mt-6">

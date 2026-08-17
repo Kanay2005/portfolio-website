@@ -13,10 +13,10 @@ export default function Portfolio() {
     <div className="min-h-screen bg-white">
       <main>
         <Hero />
+        <Experience />
         <Projects />
         <Skills />
         <Education />
-        <Experience />
         <Contact />
       </main>
 
