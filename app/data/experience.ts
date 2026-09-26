@@ -41,7 +41,7 @@ export const experience: Experience[] = [
       "Designed an “unreliable narrator” prompting framework grounded in narrative theory that raised judged explanation quality by 0.26–0.80 points on a 5-point scale across all four model families tested.",
       "Built an LLM-as-judge evaluation harness with Prometheus-style rubrics scoring 32 generation runs across two datasets, four models, and four context conditions, validated by a blind dual-annotator study.",
       "Established two negative results by ablation: a sentence-level pre-classifier lowered event-grounding scores in seven of eight conditions, and article images improved grounding without improving explanation quality.",
-      "Preparing a paper for ALTA 2026 archival submission covering the generalisation finding, null results, and failure modes, supervised by Dr. Aditya Joshi.",
+      "Submitted a paper to ALTA 2026 (archival track, under review) reporting the cross-model generalisation of the framework, null results, and failure modes, supervised by Dr. Aditya Joshi.",
     ],
   },
   {
