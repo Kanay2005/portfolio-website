@@ -24,11 +24,12 @@ export const experience: Experience[] = [
       "GitHub Actions",
     ],
     achievements: [
-      "Delivered 40+ features, defect fixes, and migrations on a cloud device simulation platform that about 18 product and V&V teams use to test ResMed's connected CPAP and ventilator devices, across a Java REST API, an Angular portal, data generation engines, and a Python MCP server.",
-      "Built simulation support for the AirSense 11 Pro launch, adding settings acknowledgement, schema-version-aware IoT endpoint routing, a review-and-retry flow for failed data sends, filter presets, and Care Check-In data, and fixed Protobuf encoding defects in its new JSON-schema data engine.",
-      "Implemented Breath-by-Breath data delivery controls, initialising control flags at device creation and simulating device acknowledgement of control and over-the-air update messages, then deployed the release to production.",
-      "Migrated the web portal and API from ECS to the company's shared Kubernetes (EKS) platform and moved 10+ services, including an AWS China deployment, from NGINX Ingress to Envoy Gateway, updating Helm values, Terraform load balancer rules, and GitHub Actions pipelines.",
-      "Extended an MCP server that lets testers set up simulations in natural language, adding compliance-device assignment and per-environment default users, and fixed intermittent connection resets and spurious 400 API responses.",
+      "Delivered 40+ features, defect fixes, and migrations on a cloud device simulation platform that about 18 product and testing teams use to test ResMed's connected CPAP and ventilator devices, across a Java REST API, an Angular portal, data generation engines, and a Python MCP server.",
+      "Built simulation support for a next-generation connected device launch, adding remote-settings acknowledgement, schema-version-aware IoT endpoint routing, a review-and-retry flow for failed data sends, reusable presets, and patient questionnaire data, and fixed Protobuf encoding defects.",
+      "Simulated cloud-controlled uploads of high-resolution therapy data, including default settings at device creation and acknowledgement of remote configuration and firmware update messages, and shipped it to production.",
+      "Migrated the web portal and API from ECS to shared Kubernetes (EKS) and moved 10+ services across US and China regions from NGINX Ingress to Envoy Gateway, updating Helm, Terraform, and GitHub Actions pipelines.",
+      "Moved the team's LLM test-automation platform (a LangGraph multi-agent MCP server, web portal, and cost dashboard) onto Envoy Gateway, setting gateway timeouts sized for long-running agent requests.",
+      "Extended an MCP server that lets testers set up simulations in natural language, adding patient-device assignment and per-environment default users, and fixed intermittent connection resets and spurious 400 API responses.",
     ],
   },
   {
